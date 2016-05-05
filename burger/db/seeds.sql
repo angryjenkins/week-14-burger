@@ -1,0 +1,1 @@
+insert into burgers (burger_name, devoured, date) VALUES ('bacon cheeseburger',true, 5/5/2016);

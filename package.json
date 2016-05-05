@@ -1,0 +1,20 @@
+{
+  "name": "burger-js",
+  "version": "1.0.0",
+  "description": "node handlebars mysql",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angryjenkins/week-14-burger.git"
+  },
+  "author": "m. nathaniel martin (@angryjenkins)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angryjenkins/week-14-burger/issues"
+  },
+  "homepage": "https://github.com/angryjenkins/week-14-burger#readme"
+}
