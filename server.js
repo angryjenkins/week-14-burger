@@ -1,39 +1,50 @@
+// ==============================================================================
 // DEPENDENCIES
-var express 		= require('express');
-var bodyParser 		= require('body-parser');
-var methodOverride 	= require('method-override');
-var path 			= require('path');
+// Series of npm packages that we will use to give our server useful functionality
+// ==============================================================================
 
+var express = require('express');
+var bodyParser = require('body-parser');
+var path = require('path');
+var exphbs = require('express-handlebars');//handlebars
+var methodOverride = require('method-override');
+
+// ==============================================================================
 // EXPRESS CONFIGURATION
-var app = express(); // Tells node that we are creating an "express" server
+// This sets up the basic properties for our express server 
+// ==============================================================================
+var app = express();
+//Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static(__dirname + '/public'));
+
 var port = process.env.PORT || 3000; // Sets an initial port. We'll use this later in our listener
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'));
 
-// This lets us serve content from the 'public' folder
-var staticContentFolder = __dirname + '/app/public';
-app.use(express.static(staticContentFolder));
+// ==============================================================================
+//setup handlesbars templating engine
+// ==============================================================================
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main'
+}));
+app.set('view engine', 'handlebars');
 
-// set the static files location /public/img will be /img for users// BodyParser makes it easy for our server to interpret data sent to it.
+// BodyParser makes it easy for our server to interpret data sent to it.
 // The code below is pretty standard.
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
-// ==============================================================================
+// ================================================================================
 // ROUTER
 // The below points our server to a series of "route" files.
-// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
-// ==============================================================================
+// These routes give our server a "map" of how to respond when users visit or request data from various URLs. 
+// ================================================================================
 
-require('./app/routing/api-routes.js')(app);
-require('./app/routing/html-routes.js')(app);
+require('./routing/api-routes.js')(app); 
+require('./routing/html-routes.js')(app);
 
-// ==============================================================================
-// LISTENER
-// The below code effectively "starts" our server
-// ==============================================================================s
-
-app.listen(port, function() {
-    console.log("'friendFinder' listening on PORT: %s", port);
+app.listen(PORT, function() {
+    console.log("'burgerServer' listening on PORT: " + port);
 });

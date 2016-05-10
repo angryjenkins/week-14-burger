@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="col-md-6">
+		<h2>Burgers Available</h2>
+		<dl>
+		 {{#each burger}}
+		  	{{#if this.devoured}}
+		  	<dt>{{this.burger_name}}</dt>
+		  	<dd>
+		  		<form method="POST" action="/another?_method=PUT">
+					<button type="submit" name="burgerid" value={{this.id}} class="btn btn-danger btn-xs">Build Another</button>
+				</form>
+		  	</dd>
+			{{/if}}
+		  {{/each}}
+		</dl>
+	</div>
+	<div class="col-md-6">
+		<h2>Burgers Eaten</h2>
+		<dl class="dl-horizontal">
+		 	{{#each burger}}
+		  		{{#unless this.devoured}}
+			  	<dt>{{this.burger_name}}</dt>
+			  	<dd>
+			  		<form method="POST" action="/devour?_method=PUT">
+						<button type="submit" name="burgerid" value={{this.id}} class="btn btn-danger btn-xs">Devour it!</button>
+					</form>
+				</dd>
+				{{/unless}}
+	  		{{/each}}
+		</dl>
+	</div>
+</div>
