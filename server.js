@@ -42,9 +42,9 @@ app.use(bodyParser.json({type:'application/vnd.api+json'}));
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs. 
 // ================================================================================
 
-require('./routing/api-routes.js')(app); 
-require('./routing/html-routes.js')(app);
+// require('./routing/api-routes.js')(app); 
+// require('./routing/html-routes.js')(app);
 
-app.listen(PORT, function() {
+app.listen(port, function() {
     console.log("'burgerServer' listening on PORT: " + port);
 });

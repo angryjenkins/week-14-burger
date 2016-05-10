@@ -8,7 +8,7 @@ module.exports = function(app) {
 	// ===========
 	// uneaten burgers
 	app.get("/api/uneaten", function(req, res) {
-		burger.uneatenDis(function(data) {
+		burger.uneatenBurgers(function(data) {
 			// display as json
 			res.json(data);
 		});
@@ -16,7 +16,7 @@ module.exports = function(app) {
 
 	// eaten burger
 	app.get("/api/eaten", function(req, res) {
-		burger.eatenDis(function(data) {
+		burger.eatenBurgers(function(data) {
 			//display as json
 			res.json(data);
 		});
@@ -27,7 +27,7 @@ module.exports = function(app) {
 		// grab the burger obj from the post
 		var builtBurger = req.body;
 		// grab the burger's name
-		burger.addNew(builtBurger.name);
+		burger.buildBurger(builtBurger.name);
 	})
 
 	// eat a burger
@@ -35,7 +35,7 @@ module.exports = function(app) {
 		// grab the burger obj from the put
 		var ateBurger = req.body;
 		// eat the burger
-		burger.eatOne(ateBurger.name);
+		burger.eatBurger(ateBurger.name);
 	})
 
 	// HTML ROUTES
@@ -43,7 +43,7 @@ module.exports = function(app) {
 
 	// when viewing root of local host, show index.html
 	app.get('/', function(req, res) {
-		res.render("../views/index.html");
+		res.render("../views/index.handlebars");
 	})
 }
 
