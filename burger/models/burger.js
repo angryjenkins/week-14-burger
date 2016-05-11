@@ -1,24 +1,24 @@
-var orm = require('./orm');
+var orm = require('../config/orm');
 
 // make burger functions
 var burger = {
 	
 	uneaten: function (callback) {
-		orm.getUneaten(function(data){
+		orm.uneatenBurgers(function(data){
 			callback(data);
 		})
 	},
 
 	
 	eaten: function(callback) {
-		orm.getEaten(function(data){
+		orm.eatenBurgers(function(data){
 			callback(data);
 		})
 	},
 
 	// code makes a burger
 	add: function(burger) {
-		orm.addBurger(burger);
+		orm.buildBurger(burger);
 	},
 
 	// code sets burger to eaten

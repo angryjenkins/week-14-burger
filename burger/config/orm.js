@@ -6,6 +6,7 @@
 // =============================================================
 var connection = require('./connection.js');
 
+console.log('ORM connected.')
 // ORM 
 // =============================================================
 var orm = {
@@ -56,5 +57,6 @@ var orm = {
 			if (err) throw err;
 		})
 	}
+}
 
 module.exports = orm;

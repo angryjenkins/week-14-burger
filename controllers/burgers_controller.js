@@ -1,6 +1,6 @@
 
 var express 	= require('express');
-var burger 		= require('../models/burger.js');
+var burger 		= require('../burger/models/burger.js');
 
 // Routes
 module.exports = function(app) {
@@ -8,7 +8,7 @@ module.exports = function(app) {
 	// ===========
 	// uneaten burgers
 	app.get("/api/uneaten", function(req, res) {
-		burger.uneatenBurgers(function(data) {
+		burger.uneaten(function(data) {
 			// display as json
 			res.json(data);
 		});
@@ -16,7 +16,7 @@ module.exports = function(app) {
 
 	// eaten burger
 	app.get("/api/eaten", function(req, res) {
-		burger.eatenBurgers(function(data) {
+		burger.eaten(function(data) {
 			//display as json
 			res.json(data);
 		});
@@ -27,7 +27,7 @@ module.exports = function(app) {
 		// grab the burger obj from the post
 		var builtBurger = req.body;
 		// grab the burger's name
-		burger.buildBurger(builtBurger.name);
+		burger.buiaddld(builtBurger.name);
 	})
 
 	// eat a burger
@@ -35,7 +35,7 @@ module.exports = function(app) {
 		// grab the burger obj from the put
 		var ateBurger = req.body;
 		// eat the burger
-		burger.eatBurger(ateBurger.name);
+		burger.eat(ateBurger.name);
 	})
 
 	// HTML ROUTES
