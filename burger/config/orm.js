@@ -6,7 +6,7 @@
 // =============================================================
 var connection = require('./connection.js');
 
-console.log('ORM connected.')
+console.log('ORM: connected.')
 // ORM 
 // =============================================================
 var orm = {

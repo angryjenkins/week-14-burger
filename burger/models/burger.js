@@ -1,5 +1,6 @@
 var orm = require('../config/orm');
 
+console.log('burger maker connected!')
 // make burger functions
 var burger = {
 	
