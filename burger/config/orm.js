@@ -1,62 +1,39 @@
-// *********************************************************************************
-// orm.js - This file offers a set of easier-to-use methods for interacting with the MySQL db.
-// *********************************************************************************
+var connection = require('./connection');
 
-// Dependencies
-// =============================================================
-var connection = require('./connection.js');
+//ROM check
+console.log("orm connected");
 
-console.log('ORM: connected.')
-// ORM 
-// =============================================================
+
 var orm = {
-
-	// Here our ORM is creating a simple method for performing a query of the entire table.
-	// We make use of the callback to ensure that data is returned only once the query is done.
-	eatenBurgers: function(callback){
-		var s = 'SELECT * FROM burgers  WHERE devoured = TRUE ORDER BY date DESC;'
-
-		connection.query(s, function(err, result) {
-	 
-            callback(result);
+    getAllBurgers: function(callback) {
+        connection.query('SELECT * FROM burgers;', function(err, burger) {
+	      if (err) throw err;
+	        callback(burger);
+	        });
+	    
+	    },
+    
+    devourBurger: function(burgerid, callback) {	
+        connection.query('UPDATE burgers SET devoured = ? WHERE ID = ?', [1, burgerid], function(err, result) {
+            if (err) throw err;
+            callback();
         });
-	},
-
-	// Here our ORM is creating a simple method for performing a query of a single character in the table.
-	// Again, we make use of the callback to grab a specific character from the database. 
-
-	uneatenBurgers: function(callback){
-		var s = ' 		s = "SELECT * FROM burgers WHERE devoured = FALSE ORDER BY date ASC';
-
-		connection.query(s,[name], function(err, result) {
-	 
-            callback(result);
+    },
+    
+    addBurger: function(addBurger, callback) {
+        connection.query('INSERT INTO burgers SET ?' , {burger_name : addBurger}, function(err, result) {
+        if (err) throw err;
+        callback();
         });
-	},
-
-	eatBurger: function(burger) {	
-        s = "UPDATE burgers " + 
-				"SET devoured=TRUE " +
-				'WHERE burger_name=?';
-		// make query
-		connection.query(s, [burger], function(err, result){
-			if (err) throw err;
-		})
     },
 
-	// Here our ORM is creating a simple method for adding characters to the database
-	// Effectively, the ORM's simple addCharacter method translates into a more complex SQL INSERT statement. 
+    anotherBurger: function(burgerid, callback) {    
+        connection.query('UPDATE burgers SET devoured = ? WHERE ID = ?', [0, burgerid], function(err, result) {
+            if (err) throw err;
+            callback();
+        });
+    }
 
-	buildBurger: function(burger){
-		// add a burger with the appropos values
-		var s = "INSERT INTO burgers " +
-					"VALUES " +
-						"(null, ?, FALSE, CURRENT_TIMESTAMP)";
-		// make query
-		connection.query(s, [burger], function(err, result){
-			if (err) throw err;
-		})
-	}
-}
-
+};
+    
 module.exports = orm;
