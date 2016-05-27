@@ -24,13 +24,13 @@ module.exports = function(app){
     });
 
     //used orm devourBurger
-    app.put('/devour', function(req,res){
+    app.post('/devour', function(req,res){
         orm.devourBurger(req.body.burgerid, function(){
             res.redirect('/');
         })
     });
 
-    app.put('/another', function(req,res){
+    app.post('/another', function(req,res){
         orm.anotherBurger(req.body.burgerid, function(){
             res.redirect('/');
         })
