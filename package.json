@@ -16,6 +16,9 @@
   "bugs": {
     "url": "https://github.com/angryjenkins/week-14-burger/issues"
   },
+  "engines": {
+    "node": "6.1.0"
+  },
   "homepage": "https://github.com/angryjenkins/week-14-burger#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
